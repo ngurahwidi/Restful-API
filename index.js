@@ -6,11 +6,20 @@ const db = require('./connection')
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
+app.get('/daftarTugas', (req, res) => {
   db.query("SELECT * FROM tugas", (error, result) => {
   res.send(result)
   })
   
+})
+app.post('/daftarTugas', (req, res) => {
+  const {tugas, tenggat, keterangan} = req.body
+  const sql = `INSERT INTO tugas (tugas, tenggat, keterangan) VALUES
+  ('${tugas}', '${tenggat}', '${keterangan}')`
+
+  db.query(sql, (error, result) => {
+  res.send(result)
+  })  
 })
 
 app.listen(port, () => {
