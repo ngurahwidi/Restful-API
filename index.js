@@ -21,7 +21,7 @@ app.post('/daftarTugas', (req, res) => {
   res.send(result)
   })  
 })
-
+app.post()
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
