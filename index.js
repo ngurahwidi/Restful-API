@@ -21,6 +21,23 @@ app.post('/daftarTugas', (req, res) => {
   res.send(result)
   })  
 })
+
+app.put('/daftarTugas', (req, res) => {
+  const { id, tugas, tenggat, keterangan } = req.body;
+  const sql = `UPDATE tugas SET tugas = ?, tenggat = ?, keterangan = ? WHERE id = ?`;
+
+  db.query(sql, [tugas, tenggat, keterangan, id], (error, result) => {
+    if (error) {
+      console.error("coba periksa kembali :", error);
+      res.status(500).send("coba periksa kembali isi data yang di inputkan");
+    } else {
+      console.log("Tugas berhasil di update !");
+      res.send(result);
+    }
+  });
+});
+
+
 app.post()
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
